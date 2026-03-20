@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Learn Django Fast",
+    "body": "Django is a powerful Python framework for building web applications quickly.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Python for Data Pipelines",
+    "body": "Building robust data pipeline systems using Python and Apache Airflow.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Cooking Tips for Beginners",
+    "body": "Best recipes and cooking techniques for people just starting out in the kitchen.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Automation in Modern DevOps",
+    "body": "How automation tools are transforming CI/CD pipelines and infrastructure management.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Introduction to Machine Learning",
+    "body": "A beginner's guide to machine learning concepts, covering Python libraries like scikit-learn.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Django REST Framework Deep Dive",
+    "body": "Advanced patterns for building APIs with Django REST Framework including serializers and viewsets.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Travel Guide: Southeast Asia",
+    "body": "Top destinations and travel tips for exploring Southeast Asia on a budget.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  },
+  {
+    "title": "Building a Data Pipeline with Kafka",
+    "body": "Step-by-step guide to building a real-time data pipeline using Apache Kafka and Python.",
+    "source": "mock",
+    "last_updated": "2026-03-20T10:00:00Z"
+  }
+]
