@@ -4,10 +4,10 @@ const cors = require('cors');
 
 const app = express();
 const allowedOrigins = [
-  'http://localhost:5173',
-  'https://finance-data-processing-and-access-amber.vercel.app',
   'https://finance-data-processing-and-access-one.vercel.app',
+  'https://finance-data-processing-and-access-amber.vercel.app',
   'https://finance-data-processing-and-access-control-backend-r1qr98khv.vercel.app',
+  'http://localhost:5173',
   ...(process.env.FRONTEND_URL || '')
     .split(',')
     .map(o => o.trim().replace(/\/$/, ''))
@@ -15,13 +15,7 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(null, false);
-    }
-  },
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -29,6 +23,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions)); // handle preflight for all routes
+app.use((req, _res, next) => { console.log('Incoming origin:', req.headers.origin); next(); });
 app.use(express.json());
 
 // Temporary test route to verify routing works
