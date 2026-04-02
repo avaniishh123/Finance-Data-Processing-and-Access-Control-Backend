@@ -3,15 +3,20 @@ const express = require('express');
 const cors = require('cors');
 
 const app = express();
-const allowedOrigins = (process.env.FRONTEND_URL || '')
-  .split(',')
-  .map(o => o.trim().replace(/\/$/, ''))
-  .filter(Boolean);
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://finance-data-processing-and-access-amber.vercel.app',
+  'https://finance-data-processing-and-access-control-backend-r1qr98khv.vercel.app',
+  ...(process.env.FRONTEND_URL || '')
+    .split(',')
+    .map(o => o.trim().replace(/\/$/, ''))
+    .filter(Boolean),
+];
 
 app.use(cors({
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin || '*');
+      callback(null, origin || true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
