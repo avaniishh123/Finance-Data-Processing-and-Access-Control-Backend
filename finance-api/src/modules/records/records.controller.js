@@ -1,4 +1,3 @@
-const pool = require('../../config/db');
 const { getClientForUser } = require('../../config/db');
 
 async function listRecords(req, res) {
@@ -8,28 +7,31 @@ async function listRecords(req, res) {
     const conditions = ['deleted_at IS NULL'];
     const params = [];
 
-    if (type) { params.push(type); conditions.push(`type = $${params.length}`); }
-    if (category) { params.push(`%${category}%`); conditions.push(`category ILIKE $${params.length}`); }
-    if (date_from) { params.push(date_from); conditions.push(`date >= $${params.length}`); }
-    if (date_to) { params.push(date_to); conditions.push(`date <= $${params.length}`); }
+    if (type)      { params.push(type);              conditions.push('type = $'      + params.length); }
+    if (category)  { params.push('%' + category + '%'); conditions.push('category ILIKE $' + params.length); }
+    if (date_from) { params.push(date_from);          conditions.push('date >= $'    + params.length); }
+    if (date_to)   { params.push(date_to);            conditions.push('date <= $'    + params.length); }
 
     const offset = (Math.max(1, parseInt(page)) - 1) * parseInt(limit);
     params.push(parseInt(limit), offset);
 
     const where = conditions.join(' AND ');
+    const limitIdx  = params.length - 1;
+    const offsetIdx = params.length;
+
     const { rows } = await client.query(
-      `SELECT r.*, u.name AS created_by_name
-       FROM financial_records r
-       JOIN users u ON u.id = r.created_by
-       WHERE ${where}
-       ORDER BY r.date DESC, r.id DESC
-       LIMIT $${params.length - 1} OFFSET $${params.length}`,
+      'SELECT r.*, u.name AS created_by_name ' +
+      'FROM financial_records r ' +
+      'JOIN users u ON u.id = r.created_by ' +
+      'WHERE ' + where + ' ' +
+      'ORDER BY r.date DESC, r.id DESC ' +
+      'LIMIT $' + limitIdx + ' OFFSET $' + offsetIdx,
       params
     );
 
     const countParams = params.slice(0, params.length - 2);
     const { rows: countRows } = await client.query(
-      `SELECT COUNT(*) FROM financial_records WHERE ${where}`,
+      'SELECT COUNT(*) FROM financial_records WHERE ' + where,
       countParams
     );
 
