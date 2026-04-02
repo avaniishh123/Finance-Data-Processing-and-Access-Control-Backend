@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: finance-api
+    runtime: node
+    rootDir: finance-api
+    buildCommand: npm install
+    startCommand: node src/app.js
+    envVars:
+      - key: NODE_ENV
+        value: production
