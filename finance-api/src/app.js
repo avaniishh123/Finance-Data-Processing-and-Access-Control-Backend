@@ -13,17 +13,25 @@ const allowedOrigins = [
     .filter(Boolean),
 ];
 
-app.use(cors({
+const corsOptions = {
   origin: (origin, callback) => {
     if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin || true);
+      callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
-}));
+  methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // handle preflight for all routes
 app.use(express.json());
+
+// Temporary test route to verify routing works
+app.get('/api/auth/test', (req, res) => res.json({ ok: true, message: 'Auth routes are reachable.' }));
 
 // Routes
 app.use('/api/auth',      require('./modules/auth/auth.routes'));
@@ -43,6 +51,6 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));
 
 module.exports = app;
