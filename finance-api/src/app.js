@@ -15,14 +15,20 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
-  origin: true,
+  origin: (origin, callback) => {
+    // Allow requests with no origin (e.g. curl, Postman, server-to-server)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS: origin '${origin}' not allowed`));
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PATCH', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
+// Preflight must be registered BEFORE other middleware
+app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // handle preflight for all routes
 app.use((req, _res, next) => { console.log('Incoming origin:', req.headers.origin); next(); });
 app.use(express.json());
 
