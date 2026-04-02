@@ -13,4 +13,4 @@ services:
       - key: JWT_SECRET
         sync: false
       - key: FRONTEND_URL
-        value: https://finance-data-processing-and-access-amber.vercel.app
+        value: https://finance-data-processing-and-access-one.vercel.app

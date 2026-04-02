@@ -6,6 +6,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'https://finance-data-processing-and-access-amber.vercel.app',
+  'https://finance-data-processing-and-access-one.vercel.app',
   'https://finance-data-processing-and-access-control-backend-r1qr98khv.vercel.app',
   ...(process.env.FRONTEND_URL || '')
     .split(',')
@@ -18,7 +19,7 @@ const corsOptions = {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(null, false);
     }
   },
   credentials: true,
