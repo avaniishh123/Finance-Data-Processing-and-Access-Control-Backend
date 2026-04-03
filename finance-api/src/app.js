@@ -44,6 +44,17 @@ app.use(express.json());
 // Temporary test route to verify routing works
 app.get('/api/auth/test', (req, res) => res.json({ ok: true, message: 'Auth routes are reachable.' }));
 
+// Temporary DB diagnostic route
+app.get('/api/auth/dbcheck', async (req, res) => {
+  try {
+    const pool = require('./config/db');
+    await pool.query('SELECT 1');
+    res.json({ db: 'connected', url_prefix: (process.env.DATABASE_URL || '').substring(0, 40) });
+  } catch (e) {
+    res.status(500).json({ db: 'failed', error: e.message, url_prefix: (process.env.DATABASE_URL || '').substring(0, 40) });
+  }
+});
+
 // Routes
 app.use('/api/auth',      require('./modules/auth/auth.routes'));
 app.use('/api/users',     require('./modules/users/users.routes'));
