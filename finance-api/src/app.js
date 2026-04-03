@@ -2,6 +2,14 @@ require('dotenv').config({ override: true });
 const express = require('express');
 const cors = require('cors');
 
+// Fail fast if critical env vars are missing
+const REQUIRED_ENV = ['DATABASE_URL', 'JWT_SECRET'];
+const missing = REQUIRED_ENV.filter(k => !process.env[k]);
+if (missing.length) {
+  console.error('FATAL: Missing required environment variables:', missing.join(', '));
+  process.exit(1);
+}
+
 const app = express();
 const allowedOrigins = [
   'https://finance-data-processing-and-access-one.vercel.app',
