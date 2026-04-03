@@ -15,6 +15,7 @@ const allowedOrigins = [
   'https://finance-data-processing-and-access-one.vercel.app',
   'https://finance-data-processing-and-access-amber.vercel.app',
   'https://finance-data-processing-and-access-control-backend-r1qr98khv.vercel.app',
+  'https://finance-data-processing-and-access-six.vercel.app',
   'http://localhost:5173',
   ...(process.env.FRONTEND_URL || '')
     .split(',')
