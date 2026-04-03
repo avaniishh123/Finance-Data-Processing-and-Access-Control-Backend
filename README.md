@@ -4,14 +4,11 @@ Finance Manager is a  **full‑stack financial management system** designed to d
 
 This project showcases how enterprise-grade access control can be implemented **at both the application and database layers**, ensuring security even if one layer is compromised.
 
-**Live Wesbite:**  
-https://finance-data-processing-and-access-six.vercel.app  
+**Live Wesbite:** https://finance-data-processing-and-access-six.vercel.app  
 
-**Demo Video:** 
-https://drive.google.com/file/d/1H1SDBizu1vRgOYrbclrZpKSZrtuuxqoS/view?usp=sharing
+**Demo Video:** https://drive.google.com/file/d/1H1SDBizu1vRgOYrbclrZpKSZrtuuxqoS/view?usp=sharing
 
-**API Base URL:**  
-https://finance-data-processing-and-access-ldri.onrender.com  
+**API Base URL:** https://finance-data-processing-and-access-ldri.onrender.com  
 
 ---
 
