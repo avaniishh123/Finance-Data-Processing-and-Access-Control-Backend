@@ -4,8 +4,11 @@ Finance Manager is a  **full‑stack financial management system** designed to d
 
 This project showcases how enterprise-grade access control can be implemented **at both the application and database layers**, ensuring security even if one layer is compromised.
 
-**Live Demo:**  
+**Live Wesbite:**  
 https://finance-data-processing-and-access-six.vercel.app  
+
+**Demo Video:** 
+https://drive.google.com/file/d/1H1SDBizu1vRgOYrbclrZpKSZrtuuxqoS/view?usp=sharing
 
 **API Base URL:**  
 https://finance-data-processing-and-access-ldri.onrender.com  
@@ -83,7 +86,7 @@ Access rules are enforced **twice**:
 
 ---
 
-## 🧠 Architecture Overview
+## Architecture Overview
 
 ```
 React Frontend (Vercel)
@@ -100,6 +103,10 @@ PostgreSQL (Supabase)
 ▼
 Secure Financial Data
 ```
+
+
+<img width="245" height="276" alt="image" src="https://github.com/user-attachments/assets/9018031d-c42c-43b7-a394-c735358d7436" />
+
 
 ### Request Lifecycle
 1. Client sends request with `Authorization: Bearer <JWT>`
@@ -158,10 +165,12 @@ finance-frontend/
 
 | Action | Viewer | Analyst | Admin |
 |------|------|------|------|
-| View dashboard | ✅ | ✅ | ✅ |
-| View records | ✅ | ✅ | ✅ |
-| Modify records | ❌ | ❌ | ✅ |
-| Manage users | ❌ | ❌ | ✅ |
+| View dashboard | A | NA | NA |
+| View records | A | NA | NA |
+| Modify records | NA | NA | A |
+| Manage users | NA | NA | A |
+
+A = Allowed , NA = Not Allowed
 
 ---
 
@@ -210,9 +219,22 @@ npm run dev
 
 ---
 
+## Glimpses of Website
+
+
+<img width="953" height="477" alt="image" src="https://github.com/user-attachments/assets/2edef960-0861-4cd9-b3dc-6c825413d08c" />
+<img width="959" height="351" alt="image" src="https://github.com/user-attachments/assets/c7cf72b7-6253-4172-85db-ed4ee2617d9c" />
+<img width="626" height="441" alt="image" src="https://github.com/user-attachments/assets/23100c6d-f8ad-4d40-9b1a-f3b1f639b492" />
+
+
+
+
 ## Ideal Use Cases
 
 - Backend portfolio project
 - RBAC & RLS learning reference
 - Secure SaaS API architecture blueprint
 - Interview-ready system design example
+
+## Authors
+Avanish Cowkur
